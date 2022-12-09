@@ -55,3 +55,22 @@ Location
 - use embedded materials：将导入的材质提取为外部资源
 - use external materials：将导入的资源保留在导入的模型中
 
+# 图片资源
+
+## 类型
+
+![image-20221209090211630](./assets/image-20221209090211630.png)
+
+# 数学
+
+## 旋转表示
+
+![image-20221209095346803](./assets/image-20221209095346803.png)
+
+## 四元数函数
+
+![image-20221209095837681](./assets/image-20221209095837681.png)
+
+## 坐标系变换
+
+![image-20221209101005643](./assets/image-20221209101005643.png)

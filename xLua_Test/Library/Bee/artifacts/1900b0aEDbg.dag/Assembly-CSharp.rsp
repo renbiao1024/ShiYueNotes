@@ -356,6 +356,8 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/MotionControl.cs"
+"Assets/Scripts/MoveTo.cs"
 "Assets/XLua/Examples/01_Helloworld/Helloworld.cs"
 "Assets/XLua/Examples/02_U3DScripting/LuaBehaviour.cs"
 "Assets/XLua/Examples/04_LuaObjectOrented/InvokeLua.cs"
