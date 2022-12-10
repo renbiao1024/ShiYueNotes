@@ -74,3 +74,42 @@ Location
 ## 坐标系变换
 
 ![image-20221209101005643](./assets/image-20221209101005643.png)
+
+# 必然事件
+
+![image-20221210181445489](./assets/image-20221210181445489.png)
+
+# 函数控制符
+
+![image-20221210184832938](./assets/image-20221210184832938.png)
+
+![image-20221210185231479](./assets/image-20221210185231479.png)
+
+# 数据结构
+
+## 链表操作
+
+![image-20221210191325762](./assets/image-20221210191325762.png)
+
+![image-20221210192428961](./assets/image-20221210192428961.png)
+
+<img src="./assets/image-20221210192435946.png" alt="image-20221210192435946" style="zoom:80%;" />
+
+# MonoBehavior类
+
+- unity的脚本都要继承自MonoBehavior
+
+![image-20221210193126417](./assets/image-20221210193126417.png)
+
+## 访问游戏对象
+
+![image-20221210200443862](./assets/image-20221210200443862.png)
+
+## 组件
+
+![image-20221210200700562](./assets/image-20221210200700562.png)
+
+![image-20221210200713904](./assets/image-20221210200713904.png)
+
+# 常用API
+
