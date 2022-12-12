@@ -60,8 +60,10 @@
     <Compile Include="Assets\XLua\Src\LuaDLL.cs" />
     <Compile Include="Assets\XLua\Tutorial\LoadLuaScript\Loader\CustomLoader.cs" />
     <Compile Include="Assets\XLua\Examples\11_RawObject\RawObjectTest.cs" />
+    <Compile Include="Assets\Scripts\FindGameObj.cs" />
     <Compile Include="Assets\XLua\Examples\06_Coroutine\CoroutineTest.cs" />
     <Compile Include="Assets\XLua\Src\MethodWarpsCache.cs" />
+    <Compile Include="Assets\Scripts\RefVal.cs" />
     <Compile Include="Assets\XLua\Examples\02_U3DScripting\LuaBehaviour.cs" />
     <Compile Include="Assets\XLua\Examples\10_SignatureLoader\SignatureLoaderTest.cs" />
     <Compile Include="Assets\XLua\Tutorial\LuaCallCSharp\LuaCallCs.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Assets\XLua\Src\CodeEmit.cs" />
     <Compile Include="Assets\XLua\Examples\07_AsyncTest\AsyncTest.cs" />
     <Compile Include="Assets\XLua\Src\LuaException.cs" />
+    <Compile Include="Assets\Scripts\DataHierarchy.cs" />
     <Compile Include="Assets\XLua\Src\InternalGlobals.cs" />
     <Compile Include="Assets\Scripts\MoveTo.cs" />
     <Compile Include="Assets\XLua\Src\ObjectTranslatorPool.cs" />
@@ -104,9 +107,10 @@
     <Compile Include="Assets\Scripts\ScreenToWorldPoint.cs" />
     <Compile Include="Assets\XLua\Src\CopyByValue.cs" />
     <Compile Include="Assets\XLua\Src\StaticLuaCallbacks.cs" />
-    <Compile Include="Assets\Scripts\RefVal.cs" />
-    <Compile Include="Assets\Scripts\DataHierarchy.cs" />
-    <Compile Include="Assets\Scripts\FindGameObj.cs" />
+    <Compile Include="Assets\Scripts\Translate.cs" />
+    <Compile Include="Assets\Scripts\CameraSmooth.cs" />
+    <Compile Include="Assets\Scripts\CoroutineTest.cs" />
+    <Compile Include="Assets\Scripts\MouseRotate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\XLua\Examples\07_AsyncTest\Resources\async_test.lua.txt" />
