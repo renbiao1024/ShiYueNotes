@@ -56,7 +56,7 @@ function Plot(r, M, N)
         local y = (N - i*2)/N
         for j =1, M do
             local x = (j*2 - M)/M
-            io.write(r(x,y) and "0" or " ")
+            io.write(r(x,y) and "." or " ")
         end
         io.write("\n")
     end
