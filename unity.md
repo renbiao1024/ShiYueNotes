@@ -312,6 +312,22 @@ Location
 
 ![image-20221214143425037](./assets/image-20221214143425037.png)
 
-## Nav Mesh
+# Nav Mesh
 
 ![img](./assets/8484664D7B1530946FA432D2CD2423E5.png)
+
+# Shader
+
+## 属性
+
+![image-20221215112620631](./assets/image-20221215112620631.png)
+
+## 子渲染器
+
+![image-20221215112733676](./assets/image-20221215112733676.png)
+
+![image-20221215114034354](./assets/image-20221215114034354.png)
+
+![image-20221215151420392](./assets/image-20221215151420392.png)
+
+![image-20221215151443159](./assets/image-20221215151443159.png)

@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\FindGameObj.cs" />
     <Compile Include="Assets\XLua\Examples\06_Coroutine\CoroutineTest.cs" />
     <Compile Include="Assets\XLua\Src\MethodWarpsCache.cs" />
+    <Compile Include="Assets\Scripts\BtnClick_4.cs" />
     <Compile Include="Assets\Scripts\CameraSmooth.cs" />
     <Compile Include="Assets\Scripts\RefVal.cs" />
     <Compile Include="Assets\XLua\Examples\02_U3DScripting\LuaBehaviour.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\XLua\Examples\07_AsyncTest\AsyncTest.cs" />
     <Compile Include="Assets\XLua\Src\LuaException.cs" />
     <Compile Include="Assets\Scripts\DataHierarchy.cs" />
+    <Compile Include="Assets\Scripts\BtnClick_1.cs" />
     <Compile Include="Assets\XLua\Src\InternalGlobals.cs" />
     <Compile Include="Assets\Scripts\MoveTo.cs" />
     <Compile Include="Assets\XLua\Src\ObjectTranslatorPool.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Assets\XLua\Examples\08_Hotfix\HotfixTest2.cs" />
     <Compile Include="Assets\XLua\Src\ObjectPool.cs" />
     <Compile Include="Assets\XLua\Src\LuaBase.cs" />
+    <Compile Include="Assets\Scripts\NavAutoFindPath.cs" />
     <Compile Include="Assets\XLua\Examples\07_AsyncTest\MessageBox.cs" />
     <Compile Include="Assets\XLua\Src\GenAttributes.cs" />
     <Compile Include="Assets\XLua\Tutorial\LoadLuaScript\ByString\ByString.cs" />
@@ -113,10 +116,7 @@
     <Compile Include="Assets\Scripts\ScreenToWorldPoint.cs" />
     <Compile Include="Assets\XLua\Src\CopyByValue.cs" />
     <Compile Include="Assets\XLua\Src\StaticLuaCallbacks.cs" />
-    <Compile Include="Assets\Scripts\BtnClick_1.cs" />
-    <Compile Include="Assets\Scripts\BtnClick_4.cs" />
     <Compile Include="Assets\Scripts\DropDownTest.cs" />
-    <Compile Include="Assets\Scripts\NavAutoFindPath.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\XLua\Examples\07_AsyncTest\Resources\async_test.lua.txt" />
@@ -125,6 +125,7 @@
     <None Include="Assets\XLua\Resources\xlua\util.lua.txt" />
     <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
     <None Include="Assets\XLua\Resources\perf\memory.lua.txt" />
+    <None Include="Assets\Shaders\MySurfaceShader.shader" />
     <None Include="Assets\XLua\Examples\03_UIEvent\ButtonInteraction.lua.txt" />
     <None Include="Assets\XLua\Examples\02_U3DScripting\LuaTestScript.lua.txt" />
     <None Include="Assets\XLua\Examples\07_AsyncTest\Resources\message_box.lua.txt" />

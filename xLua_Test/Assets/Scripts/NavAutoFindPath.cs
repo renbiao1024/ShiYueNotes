@@ -13,7 +13,8 @@ public class NavAutoFindPath : MonoBehaviour
 {
     public Transform target;
     NavMeshAgent agent;
-
+    public GameObject bridge;
+    bool isActive = true;
     private void Start()
     {
         agent = transform.GetComponent<NavMeshAgent>();
@@ -36,6 +37,14 @@ public class NavAutoFindPath : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)) 
         {
             agent.isStopped = !agent.isStopped;
+        }
+
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            isActive = !isActive;
+            bridge.SetActive(isActive);
+            agent.areaMask = isActive? -1 : 7;
+
         }
     }
 }
