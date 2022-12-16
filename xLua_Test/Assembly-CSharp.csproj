@@ -117,6 +117,8 @@
     <Compile Include="Assets\XLua\Src\CopyByValue.cs" />
     <Compile Include="Assets\XLua\Src\StaticLuaCallbacks.cs" />
     <Compile Include="Assets\Scripts\DropDownTest.cs" />
+    <Compile Include="Assets\Scripts\LookAtPoint.cs" />
+    <Compile Include="Assets\Scripts\ProfilerExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\XLua\Examples\07_AsyncTest\Resources\async_test.lua.txt" />

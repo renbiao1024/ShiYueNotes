@@ -331,3 +331,136 @@ Location
 ![image-20221215151420392](./assets/image-20221215151420392.png)
 
 ![image-20221215151443159](./assets/image-20221215151443159.png)
+
+# Asset Bundle
+
+- 游戏运行时对资源的动态下载和加载
+
+![image-20221216091056828](./assets/image-20221216091056828.png)
+
+- Bundle的依赖关系unity会自动解决![image-20221216094652334](./assets/image-20221216094652334.png)
+
+## AssetBundle下载
+
+![image-20221216094823041](./assets/image-20221216094823041.png)
+
+![image-20221216094835971](./assets/image-20221216094835971.png)
+
+![image-20221216094901699](./assets/image-20221216094901699.png)
+
+## AssetBundle的加载
+
+![image-20221216095259196](./assets/image-20221216095259196.png)
+
+![image-20221216095334533](./assets/image-20221216095334533.png)
+
+![image-20221216095352705](./assets/image-20221216095352705.png)
+
+## Bundle Variant
+
+![image-20221216100417999](./assets/image-20221216100417999.png)
+
+![image-20221216100406704](./assets/image-20221216100406704.png)
+
+## 卸载Bundle
+
+![image-20221216100448795](./assets/image-20221216100448795.png)
+
+#  网络
+
+授权服务器：客户端告诉服务端自己要做什么，而服务端做完返回给客户端
+
+非授权服务器：客户端完成逻辑，服务端仅作消息的转发
+
+![image-20221216101752990](./assets/image-20221216101752990.png)
+
+## HLAPI
+
+![image-20221216102017267](./assets/image-20221216102017267.png)
+
+## TLAPI传输层API
+
+- 直接使用传输层的工作流程![image-20221216102947323](./assets/image-20221216102947323.png)
+
+![image-20221216103004528](./assets/image-20221216103004528.png)
+
+![image-20221216103012676](./assets/image-20221216103012676.png)
+
+![image-20221216103034950](./assets/image-20221216103034950.png)
+
+![image-20221216103047413](./assets/image-20221216103047413.png)
+
+![image-20221216103056610](./assets/image-20221216103056610.png)
+
+![image-20221216103102363](./assets/image-20221216103102363.png)
+
+## 网络组件
+
+- Network Animator：同步网格动画
+- Network Discovery：允许使用网络系统的unity应用程序再本地网络上找到彼此
+- Network Identity：控制对象的网络身份
+- Network Lobby Manager：游戏大厅
+- Network Lobby Player：存储大厅每个玩家的状态
+- Network Manager：允许用户控制网络游戏的状态
+- Network Manager HUD：提供方便的网络服务的UI
+- Network Proximity Checker：基于玩家的近邻度控制网络客户端的GameObjects的可见性
+- Network Start Position：新的游戏对象创建的位置
+- Network Transform：同步网络中的Gameobject的移动和旋转
+- Network Transform Child：将GameObject的子对象的变换和Network Transform组件同步
+- Network Transform Visualizer：可视化Network Transform
+
+## Unity的网络请求
+
+P470
+
+![img](./assets/B9D4E6EB02D47C7083E7A680A41FD3BA.png)
+
+- 书籍和2019版本不太一致，日后学习
+
+# 编辑器窗口
+
+- Editor文件夹下写内容即可
+
+![image-20221216154513025](./assets/image-20221216154513025.png)
+
+![image-20221216154606614](./assets/image-20221216154606614.png)
+
+![image-20221216154620141](./assets/image-20221216154620141.png)
+
+# Inspector自定义
+
+![image-20221216155856840](./assets/image-20221216155856840.png)
+
+## Scene自定义
+
+![image-20221216160214126](./assets/image-20221216160214126.png)
+
+# 脚本调试和优化
+
+- profiler查看性能消耗
+
+![image-20221216161812398](./assets/image-20221216161812398.png)
+
+## 各平台通用优化手段
+
+- 使用FixedUpdate不要写太多无需重复调用的代码
+- 不需要Update函数应该删除，不在Update中执行Find类函数，可以在Start保存变量使用
+- 引用一个游戏对象的逻辑，可以在最开始的地方定义它
+- 当一个程序不需要每帧执行，可以使用协程。定时重复可以使用InvokeRepeating
+- 减少使用临时变量，特别是Update
+- 在游戏暂停或者切换场景的时候可以主动进行垃圾回收`System.GC.Collection()`
+- 优化数学计算
+
+## 移动设备的优化
+
+- 物理性能
+
+![image-20221216162520258](./assets/image-20221216162520258.png)
+
+![image-20221216162548369](./assets/image-20221216162548369.png)
+
+- 脚本性能![image-20221216162737392](./assets/image-20221216162737392.png)
+
+# 跨平台发布
+
+![image-20221216163849969](./assets/image-20221216163849969.png)

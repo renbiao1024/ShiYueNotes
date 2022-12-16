@@ -702,7 +702,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -717,11 +723,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: fef9b526-6d15-4cb0-b40f-2cdb70d70dd4
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: xLua_Test
+  organizationId: wechat_os_qy0xylnmzj90fffrapdzxq-_m
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
