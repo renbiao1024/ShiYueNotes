@@ -1,4 +1,4 @@
-N = 8
+local N = 8
 IsFinish = false
 
 --检查 n,c 是否合理
