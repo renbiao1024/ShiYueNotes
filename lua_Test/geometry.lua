@@ -1,3 +1,5 @@
+local geometry = {}
+
 -- 圆形
 function Circle(cx, cy, r)
     return function (x, y) --特征函数
@@ -62,5 +64,14 @@ function Plot(r, M, N)
     end
 end
 
-C1 = Circle(0,0,0.5)
-Plot(Diff(C1, Trans(C1, 0.3, 0)), 100, 50)
+
+return {
+    Circle = Circle,
+    Diff = Diff,
+    Trans = Trans,
+    Plot = Plot
+}
+
+
+-- C1 = Circle(0,0,0.5)
+-- Plot(Diff(C1, Trans(C1, 0.3, 0)), 100, 50)
