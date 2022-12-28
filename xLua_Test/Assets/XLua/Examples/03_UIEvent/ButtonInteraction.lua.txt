@@ -10,4 +10,8 @@ function start()
 	self:GetComponent("Button").onClick:AddListener(function()
 		print("clicked, you input is '" ..input:GetComponent("InputField").text .."'")
 	end)
+
+	btn2:GetComponent("Button").onClick:AddListener(function()
+		print("click btn 2")
+	end)
 end

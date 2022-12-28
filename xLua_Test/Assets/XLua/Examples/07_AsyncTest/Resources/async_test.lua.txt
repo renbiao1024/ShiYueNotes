@@ -8,7 +8,7 @@ local util = require 'xlua.util'
 local message_box = require 'message_box'
 
 -------------------------async_recharge-----------------------------
-local function async_recharge(num, cb) --æ¨¡æ‹Ÿçš„å¼‚æ­¥å……å€¼
+local function async_recharge(num, cb) --Ä£ÄâµÄÒì²½³äÖµ
     print('requst server...')
     cb(true, num)
 end
@@ -16,17 +16,16 @@ end
 local recharge = util.async_to_sync(async_recharge)
 -------------------------async_recharge end----------------------------
 local buy = function()
-    message_box.alert("æ‚¨ä½™é¢ä¸è¶³ï¼Œè¯·å……å€¼ï¼", "ä½™é¢æé†’")
-	if message_box.confirm("ç¡®è®¤å……å€¼10å…ƒå—ï¼Ÿ", "ç¡®è®¤æ¡†") then
+    message_box.alert("ÄúÓà¶î²»×ã£¬Çë³äÖµ£¡", "Óà¶îÌáĞÑ")
+	if message_box.confirm("È·ÈÏ³äÖµ10ÔªÂğ£¿", "È·ÈÏ¿ò") then
 		local r1, r2 = recharge(10)
 		print('recharge result:', r1, r2)
-		message_box.alert("å……å€¼æˆåŠŸï¼", "æç¤º")
+		message_box.alert("³äÖµ³É¹¦£¡", "ÌáÊ¾")
 	else
 	    print('cancel')
-	    message_box.alert("å–æ¶ˆå……å€¼ï¼", "æç¤º")
+	    message_box.alert("È¡Ïû³äÖµ£¡", "ÌáÊ¾")
 	end
 	print('recharge finished')
 end
---å°†æŒ‰é’®ç›‘å¬ç‚¹å‡»äº‹ä»¶ï¼Œç»‘å®šbuyæ–¹æ³•
+--½«°´Å¥¼àÌıµã»÷ÊÂ¼ş£¬°ó¶¨buy·½·¨
 CS.UnityEngine.GameObject.Find("Button"):GetComponent("Button").onClick:AddListener(util.coroutine_call(buy))
-

@@ -119,11 +119,5 @@ namespace XLuaTest
         {
             Debug.Log(string.Format("{0} has property changed {1}={2}", sender, e.name, e.value));
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }
