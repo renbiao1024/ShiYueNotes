@@ -1,11 +1,7 @@
 ManifestFileVersion: 0
-CRC: 2419982035
+CRC: 3444490668
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: cubeab
-      Dependencies:
-        Dependency_0: sphereab
-    Info_1:
-      Name: sphereab
+      Name: lua
       Dependencies: {}
