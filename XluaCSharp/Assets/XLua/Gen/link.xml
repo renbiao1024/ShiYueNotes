@@ -1,0 +1,17 @@
+﻿
+
+<linker>
+
+	<assembly fullname="Assembly-CSharp">
+	    <type fullname="Tools" preserve="all"/>
+		<type fullname="Lesson6" preserve="all"/>
+		<type fullname="Lesson9" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="UnityEngine.CoreModule">
+	    <type fullname="UnityEngine.GameObject" preserve="all"/>
+		
+	</assembly>
+
+</linker>
