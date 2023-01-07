@@ -370,6 +370,7 @@
 "Assets/Scripts/DataHierarchy.cs"
 "Assets/Scripts/DropDownTest.cs"
 "Assets/Scripts/FindGameObj.cs"
+"Assets/Scripts/Hotfix/HotfixMain.cs"
 "Assets/Scripts/LookAtPoint.cs"
 "Assets/Scripts/MotionControl.cs"
 "Assets/Scripts/MouseRotate.cs"

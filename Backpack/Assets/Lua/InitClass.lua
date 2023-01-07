@@ -19,9 +19,14 @@ Text = UI.Text
 Toggle = UI.Toggle
 ScrollRect = UI.ScrollRect
 UIBehavior = CS.UnityEngine.EventSystems.UIBehaviour
+
+Physics = CS.UnityEngine.Physics
+Debug = CS.UnityEngine.Debug
 -- Canvas
 Canvas = GameObject.Find("Canvas").transform
-
-
---得到AB包资源管理器的单例对象
+QueryTriggerInteraction = CS.UnityEngine.QueryTriggerInteraction
+Input = CS.UnityEngine.Input
+Camera = CS.UnityEngine.Camera
 ABMgr = CS.ABMgr.GetInstance()
+LuaMonoMgr = CS.LuaMonoMgr
+E_LifeFun_Type = CS.E_LifeFun_Type

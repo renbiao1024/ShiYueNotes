@@ -62,6 +62,7 @@
      <Compile Include="Assets\XLua\Gen\XLuaGenAutoRegister.cs" />
      <Compile Include="Assets\XLua\Src\ObjectPool.cs" />
      <Compile Include="Assets\XLua\Src\LuaBase.cs" />
+     <Compile Include="Assets\Scripts\LuaMonoMgr.cs" />
      <Compile Include="Assets\XLua\Gen\Tutorial_ICalcWrap.cs" />
      <Compile Include="Assets\XLua\Src\GenAttributes.cs" />
      <Compile Include="Assets\XLua\Tutorial\LoadLuaScript\ByString\ByString.cs" />
