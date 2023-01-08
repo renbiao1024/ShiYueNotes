@@ -39,6 +39,7 @@
      <Compile Include="Assets\XLua\Src\LuaDLL.cs" />
      <Compile Include="Assets\XLua\Tutorial\LoadLuaScript\Loader\CustomLoader.cs" />
      <Compile Include="Assets\XLua\Src\MethodWarpsCache.cs" />
+     <Compile Include="Assets\Scripts\DragObj.cs" />
      <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\XLua\Tutorial\LuaCallCSharp\LuaCallCs.cs" />
      <Compile Include="Assets\XLua\Src\LuaFunction.cs" />

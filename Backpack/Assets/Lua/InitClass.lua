@@ -19,6 +19,8 @@ Text = UI.Text
 Toggle = UI.Toggle
 ScrollRect = UI.ScrollRect
 UIBehavior = CS.UnityEngine.EventSystems.UIBehaviour
+RectTransformUtility = CS.UnityEngine.RectTransformUtility
+
 
 Physics = CS.UnityEngine.Physics
 Debug = CS.UnityEngine.Debug
@@ -29,4 +31,6 @@ Input = CS.UnityEngine.Input
 Camera = CS.UnityEngine.Camera
 ABMgr = CS.ABMgr.GetInstance()
 LuaMonoMgr = CS.LuaMonoMgr
+DragObj = CS.DragObj
 E_LifeFun_Type = CS.E_LifeFun_Type
+E_DragFun_Type = CS.E_DragFun_Type

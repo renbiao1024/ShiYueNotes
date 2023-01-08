@@ -3,9 +3,9 @@ Object:subClass("worldObj")
 worldObj.luaMgr = nil
 worldObj.ray = nil
 worldObj.hit = nil
+
 function worldObj.onFixedUpdate()
     -- print("lua update")
-
     if Input.GetMouseButtonDown(0) then
         worldObj.ray = Camera.main:ScreenPointToRay(Input.mousePosition)
         Debug.DrawLine(worldObj.ray.origin, worldObj.ray:GetPoint(1000),CS.UnityEngine.Color.green, 2)

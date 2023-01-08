@@ -359,6 +359,7 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/CSharpCallLuaList.cs"
+"Assets/Scripts/DragObj.cs"
 "Assets/Scripts/LuaMonoMgr.cs"
 "Assets/Scripts/Main.cs"
 "Assets/Scripts/ProjectBase/ABMgr.cs"
