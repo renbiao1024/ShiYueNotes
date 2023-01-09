@@ -91,6 +91,7 @@
      <None Include="Assets\LuaTxt\JsonUtility.lua.txt" />
      <None Include="Assets\LuaTxt\Main.lua.txt" />
      <None Include="Assets\LuaTxt\ItemData.lua.txt" />
+     <None Include="Assets\LuaTxt\WorldObj.lua.txt" />
      <None Include="Assets\XLua\Resources\perf\profiler.lua.txt" />
      <None Include="Assets\LuaTxt\InitClass.lua.txt" />
      <None Include="Assets\LuaTxt\MainPanel.lua.txt" />

@@ -1,0 +1,302 @@
+Object:subClass("MatchThree")
+
+MatchThree.rowCount = 9
+MatchThree.fallTime = 0.1
+MatchThree.switchPosTime = 0.5
+MatchThree.cubePrefabs = {}
+MatchThree.cubes = {}
+MatchThree.markedCubeList = {}
+MatchThree.fstClickCube = nil
+MatchThree.scdClickCube = nil
+MatchThree.isMarked = false
+MatchThree.background = nil
+MatchThree.startMoveTime = 0
+MatchThree.moveMarkedCubes = {}
+MatchThree.moveUnMarkedCubes = {}
+MatchThree.moveSwitchCubes = {}
+MatchThree.LuaMonoMgr = nil
+
+function MatchThree:Init()
+    self.background = GameObject.Find("Plane")
+    self:LoadResource()
+    self:CreateCubes()
+    self.LuaMonoMgr = GameObject.Find("Main Camera"):AddComponent(typeof(LuaMonoMgr))
+    self.LuaMonoMgr:AddOrRemoveListener(self.Update ,CS.E_LifeFun_Type.Update)
+end
+
+function MatchThree:LoadResource()
+    for i = 1, 9 do
+        self.cubePrefabs[i] = ABMgr:LoadRes("cubes", "Cube"..i ,typeof(GameObject))
+    end
+end
+
+function MatchThree:CreateCubes()
+    for i = 0, 8 do
+        for j = 0, 8 do
+            local idx = math.ceil(UnityEngine.Random.Range(0,9)); -- 1-9的随机数
+            local cubePrefab = self.cubePrefabs[idx];
+            local cubeInst = GameObject.Instantiate(cubePrefab)
+            cubeInst.transform.position = UnityEngine.Vector3(i,j,0)
+            cubeInst.name = idx
+            cubeInst.transform.parent = self.background.transform
+            if self.cubes[i] == nil then
+                self.cubes[i] = {}
+            end
+            self.cubes[i][j] = cubeInst
+        end
+    end
+end
+
+function MatchThree:CheckAndRefresh()
+    self:CheckAll()
+    self:Refresh()
+end
+
+function MatchThree:CheckAll()
+    self:InitMarkedCube()
+
+    for i = 0, 6 do
+        for j = 0, 8 do
+            if self.cubes[i][j].name == self.cubes[i+1][j].name and self.cubes[i][j].name == self.cubes[i+2][j].name then
+                self:MarkCube(i,j)
+                self:MarkCube(i+1,j)
+                self:MarkCube(i+2,j)
+            end
+        end
+    end
+
+    for i = 0, 8 do
+        for j = 0, 6 do
+            if self.cubes[i][j].name == self.cubes[i][j+1].name and self.cubes[i][j].name == self.cubes[i][j+2].name then
+                self:MarkCube(i,j)
+                self:MarkCube(i,j+1)
+                self:MarkCube(i,j+2)
+            end
+        end
+    end
+end
+
+
+-- To Understand
+function MatchThree:MarkCube(i,j)
+    local markedCubeCount = #self.markedCubeList[i] + 1
+    for idx = 1, markedCubeCount do
+        if self.markedCubeList[i][idx] == self.cubes[i][j] then
+            return;
+        end
+    end
+
+    if self.markedCubeList[i][markedCubeCount] == nil then
+        self.markedCubeList[i][markedCubeCount] = self.cubes[i][j]
+        self.isMarked = true
+    end
+end
+
+function MatchThree:InitMarkedCube()
+    self.isMarked = false;
+    for i = 0, 8 do
+        self.markedCubeList[i] = {}
+    end
+    self.moveMarkedCubes = {}
+    self.moveUnMarkedCubes = {}
+end
+
+function MatchThree:Refresh()
+    for col = 0, 8 do
+        --获取当前列的 被标记的棋子的数量
+        curColMarkedCubeCount = #self.markedCubeList[col]
+        if curColMarkedCubeCount > 0 then
+            --标记的棋子被清除后，需要将被标记棋子的上方的非标记棋子移动到下方，进行填充
+            for row = 0, 8 do
+                --非标记的棋子要下降的高度
+                local notMarkDescend = 0
+                for k = 1, curColMarkedCubeCount do
+                    --说明当前棋子是 已被标记的棋子， 我们目前是调整非标记棋子的位置，所以直接退出当前循环
+                    if(self.cubes[col][row] == self.markedCubeList[col][k]) then
+                        notMarkDescend = 0;
+                        break;
+                    end
+                    if(self.cubes[col][row].transform.position.y > self.markedCubeList[col][k].transform.position.y) then
+                        notMarkDescend = notMarkDescend + 1;
+                    end
+                end
+                if(notMarkDescend > 0) then
+                    self.cubes[col][row - notMarkDescend] = self.cubes[col][row];
+                    --移动棋子
+                    local startPos = self.cubes[col][row - notMarkDescend].transform.position;
+                    local endPos =  UnityEngine.Vector3(col, row-notMarkDescend, 0);
+                    local time = notMarkDescend * self.fallTime + 0.3
+                    self.moveUnMarkedCubes[#self.moveUnMarkedCubes + 1] = {self.cubes[col][row - notMarkDescend], startPos, endPos, time}
+                end
+            end
+            --将被标记的棋子，全部移至顶部
+            for i = 1, curColMarkedCubeCount do
+                markIndex = 0;
+                for j = 1, curColMarkedCubeCount do
+                    --按照移动前的高低放置
+                    if(self.markedCubeList[col][i].transform.position.y < self.markedCubeList[col][j].transform.position.y) then
+                        markIndex = markIndex + 1;
+                    end
+                end
+                self.cubes[col][8 - markIndex] = self.markedCubeList[col][i];
+            end
+            --curColMarkedCubeCount大于0，当前位于顶部的棋子，都是被标记的棋子了
+            for row = (9 - curColMarkedCubeCount), 8 do
+
+                local moveDistance = row + self.rowCount;
+                if( row + moveDistance > 12) then
+                    moveDistance = 12 - row;
+                end
+                --重置棋子，更换棋子游戏物体名称、位置、材质
+                self.cubes[col][row].transform.position = UnityEngine.Vector3(col, row + moveDistance, 0);
+                local random = math.ceil(UnityEngine.Random.Range(0, 8));
+                self.cubes[col][row]:GetComponent(typeof(UnityEngine.MeshRenderer)).material = self.cubePrefabs[random]:GetComponent(typeof(UnityEngine.MeshRenderer)).sharedMaterial;
+                self.cubes[col][row].name = ""..random;
+                local startPos = self.cubes[col][row].transform.position;
+                local endPos = UnityEngine.Vector3(col, row, 0);
+                self.moveMarkedCubes[#self.moveMarkedCubes + 1] ={self.cubes[col][row], startPos, endPos, self.switchPosTime};
+            end
+        end
+    end
+    if (#self.moveMarkedCubes > 0) or (#self.moveUnMarkedCubes > 0) then
+        self.startMoveTime = UnityEngine.Time.time;
+    end
+end
+
+function MatchThree:MoveTo(cubes)
+    local cubeCount = #cubes
+    if cubeCount <= 0 then
+        return false
+    end
+
+    local finishCount = 0
+    for index = 1, cubeCount do
+        local goTarget = cubes[index][1];
+        local startPos = cubes[index][2];
+        local endPos = cubes[index][3];
+        local time = cubes[index][4];
+
+        local position = UnityEngine.Vector3.Lerp(startPos, endPos, (UnityEngine.Time.time - self.startMoveTime) / time);
+
+        goTarget.transform.position = position;
+
+        if UnityEngine.Vector3.Distance(endPos, position) == 0 then
+            finishCount = finishCount + 1;
+        end
+    end
+    return finishCount == cubeCount;
+end
+
+function MatchThree:Update()
+    --print("update")
+    if(UnityEngine.Time.frameCount == 60)  then
+        MatchThree:CheckAndRefresh()
+    end
+    --Move 先让非标记棋子移动， 再让标记棋子移动，最后如果有棋子交换，则让棋子交换
+    if(#MatchThree.moveUnMarkedCubes > 0) then
+        if(MatchThree:MoveTo(MatchThree.moveUnMarkedCubes)) then
+            MatchThree.moveUnMarkedCubes = {}
+            MatchThree.startMoveTime = UnityEngine.Time.time
+        end
+    elseif(#MatchThree.moveMarkedCubes > 0) then
+        if(MatchThree:MoveTo(MatchThree.moveMarkedCubes)) then
+            MatchThree.moveMarkedCubes = {};
+            --被销毁的棋子，下降完毕后再刷新一次
+            MatchThree:CheckAndRefresh();
+            MatchThree.startMoveTime = UnityEngine.Time.time;
+        end
+    elseif(#MatchThree.moveSwitchCubes > 0) then --棋子交换
+        if(MatchThree:MoveTo(MatchThree.moveSwitchCubes)) then
+            MatchThree.moveSwitchCubes = {};
+            --交换过后，检查是否有棋子被标记
+            MatchThree:CheckAll();
+            if MatchThree.isMarked then
+                --交换后，有棋子被标记
+                MatchThree:Refresh();
+            else
+                --如果没有标记棋子，那么就让棋子返回交换前的位置
+                MatchThree:SwtichCubes();
+            end
+            MatchThree:CancelSeleted();
+        end
+    else --没有棋子移动，判断是否有用户输入
+        if(UnityEngine.Input.GetMouseButtonDown(0)) then
+            --print("input")
+            MatchThree:RaycastCube();
+        end
+    end
+end
+
+function MatchThree:RaycastCube()
+    local ray = UnityEngine.Camera.main:ScreenPointToRay(UnityEngine.Input.mousePosition)
+    -- UnityEngine.Debug.DrawLine(ray.origin, ray:GetPoint(1000),UnityEngine.Color.green, 2)
+    if UnityEngine.Physics.Raycast(ray) == false then return; end
+    --print("RaycastCube")
+    local hit = UnityEngine.Physics.RaycastAll(ray)[0];
+    if(hit.transform.parent == MatchThree.background.transform) then
+        --获取到了被点击的棋子了
+        if(MatchThree:IsSwitchable(hit.transform.gameObject)) then
+            MatchThree:SwtichCubes()
+        end
+    else
+        --取消选中
+        MatchThree:CancelSeleted();
+    end
+end
+
+--取消交换
+function MatchThree:CancelSeleted()
+    if(self.fstClickCube == nil) then
+        return;
+    end
+    self.fstClickCube:GetComponent(typeof(UnityEngine.MeshRenderer)).material.color = UnityEngine.Color.white;
+    self.fstClickCube = nil;
+    self.scdClickCube = nil;
+end
+
+--检测能否交换（基本检查：连续两次点击是否为同种类型、距离不为1)
+function MatchThree:IsSwitchable(goHit)
+    if(self.fstClickCube == nil) then
+        --第一次点击，选中棋子
+        self.fstClickCube = goHit;
+        self.fstClickCube:GetComponent(typeof(UnityEngine.MeshRenderer)).material.color = UnityEngine.Color.red;
+        --直接退出，等待第二次点击
+        return false;
+    end
+    --点击同种类型的棋子
+    if(self.fstClickCube.name == goHit.name) then
+        self:CancelSeleted();
+        return false;
+    end
+    --超过距离范围，  取1.1和0.9 是防止Unity在移动时的bug（可能会具体坐标不是整数）
+    local distance = UnityEngine.Vector3.Distance(goHit.transform.position, self.fstClickCube.transform.position)
+    if (distance > 1.1) or (distance < 0.9) then
+        self:CancelSeleted();
+        return false
+    end
+    self.scdClickCube = goHit;
+    return true;
+end
+
+function MatchThree:SwtichCubes()
+    if (self.fstClickCube == nil) and (self.scdClickCube == nil) then
+        return
+    end
+    local posFirst = self.fstClickCube.transform.position;
+    local posSecond = self.scdClickCube.transform.position;
+    self.cubes[Round(posFirst.x)][Round(posFirst.y)] = self.scdClickCube;
+    self.cubes[Round(posSecond.x)][Round(posSecond.y)] = self.fstClickCube;
+
+    self.startMoveTime = UnityEngine.Time.time;
+    self.moveSwitchCubes[1] = {self.fstClickCube, posFirst, posSecond, self.switchPosTime}
+    self.moveSwitchCubes[2] = {self.scdClickCube, posSecond, posFirst, self.switchPosTime}
+end
+
+--四舍五入
+function Round(value)
+    if(math.ceil(value) <= value + 0.5) then
+        return math.ceil(value)
+    else
+        return math.floor(value)
+    end
+end

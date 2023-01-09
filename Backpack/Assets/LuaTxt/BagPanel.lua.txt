@@ -83,7 +83,6 @@ end
 
 function BagPanel:ShowMe(name)
     self.base.ShowMe(self,name)
-
     if self.nowType == -1 then
         self:ChangeType(1)
     end
@@ -97,43 +96,56 @@ end
 
 function BagPanel:ChangeType(type) --1装备 2道具 3宝石
     --print(type)
+    if type ~= self.nowType then   -- 打开背包或切换格子
+        self.nowType = type
+        --删除旧格子
+        for i = 1, #self.items do
+            self.items[i]:Destroy()
+        end
+        self.items = {}
 
-    if type == self.nowType then return end
-    self.nowType = type
+        --创建新格子
+        local nowItems = nil
+        if type == 1 then
+            nowItems = PlayerData.equips
+        elseif type == 2 then
+            nowItems = PlayerData.items
+        else
+            nowItems = PlayerData.gems
+        end
 
-    --删除旧格子
-    for i = 1, #self.items do
-        self.items[i]:Destroy()
+        for i = 1, #nowItems do
+            local grid = ItemGrid:new()
+            grid:Init(self.content, (i-1)%4 * 170, -math.floor((i-1) / 4) * 170)
+            grid:InitData(nowItems[i])
+            table.insert(self.items, grid)                  -- 将获取到的图记录在表中
+        end
     end
-    self.items = {}
+end
 
-    --创建新格子
-    local nowItems = nil
-    if type == 1 then
-        nowItems = PlayerData.equips
-    elseif type == 2 then
-        nowItems = PlayerData.items
-    else
-        nowItems = PlayerData.gems
-    end
+function BagPanel:PickupUpdate(pickType)
+    if pickType == self.nowType then
+        --删除旧格子
+        for i = 1, #self.items do
+            self.items[i]:Destroy()
+        end
+        self.items = {}
 
-    for i = 1, #nowItems do
-        --[[
-        -- local grid = {}
-        -- grid.obj = ABMgr:LoadRes("ui", "ItemGrid")          -- 从AB包加载格子
-        -- grid.obj.transform:SetParent(self.content, false)   -- 设置父类
-        -- grid.obj.transform.localPosition = Vector3((i-1)%4 * 170, -math.floor((i-1) / 4) * 170, 0)  -- 设置格子位置
-        -- grid.imgIcon = grid.obj.transform:Find("ItemImg"):GetComponent(typeof(Image))               -- 获取到图片组件和文本组件
-        -- grid.txtNum = grid.obj.transform:Find("numTxt"):GetComponent(typeof(Text))
-        -- grid.txtNum.text = nowItems[i].num                      -- 设置数量
-        -- local data = ItemData[nowItems[i].id]                   -- 获取item信息
-        -- local strs = string.split(data.icon, "_")    -- 获取到icon信息 strs[1] = Icon, strs[2] = 数字
-        -- local spriteAtlas = ABMgr:LoadRes("ui", strs[1], typeof(SpriteAtlas))    --从AB包的spriteAtlas加载sprite
-        -- grid.imgIcon.sprite = spriteAtlas:GetSprite(strs[2])
-        --]]
-        local grid = ItemGrid:new()
-        grid:Init(self.content, (i-1)%4 * 170, -math.floor((i-1) / 4) * 170)
-        grid:InitData(nowItems[i])
-        table.insert(self.items, grid)                  -- 将获取到的图记录在表中
+        --创建新格子
+        local nowItems = nil
+        if pickType == 1 then
+            nowItems = PlayerData.equips
+        elseif pickType == 2 then
+            nowItems = PlayerData.items
+        else
+            nowItems = PlayerData.gems
+        end
+
+        for i = 1, #nowItems do
+            local grid = ItemGrid:new()
+            grid:Init(self.content, (i-1)%4 * 170, -math.floor((i-1) / 4) * 170)
+            grid:InitData(nowItems[i])
+            table.insert(self.items, grid)                  -- 将获取到的图记录在表中
+        end
     end
 end
